@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% include "nav.html" %}
+
+<div class="card align-item-center bg-light " style="width: 40rem;">
+    <div class="card-body">
+      <h5 class="card-title text-danger"><center>Member Loan Form</center></h5>
+      <form  method="POST" enctype="multipart/form-data" class=" text-black">
+        {% if messages %}
+        {% for message in messages %}
+           <p {% if message.tags %} class="alert alert-{{message.tags}} mb-5"{% endif %}>{{message}}</p>
+        {% endfor %}
+      {% endif %}   
+        {%load crispy_forms_tags%}
+        {%csrf_token%}
+        {{form|crispy}}
+        
+
+        
+      
+    
+        <br>
+        <br>
+        <button type="submit" class="btn btn-outline-primary align-center">Save</button>
+        
+         
+      
+
+
+{% endblock %}

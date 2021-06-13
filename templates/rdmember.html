@@ -1,0 +1,77 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+{% include "nav.html" %} 
+{% load static %}
+
+<!-- body -->
+
+
+
+
+     <form action="{% url 'search' %}" method="get">
+        <label for="">Member Full Name:</label>
+       <input type="text" placeholder="Search" name="query" id="query">
+       <button type="submit"  class="btn btn-outline-primary align-center">Search</button>
+    </form> 
+     
+     <table class="table">
+        <tr class="table-dark">
+     <th >ID</th>
+     <td>User</td>
+     <th >Full Name</th>
+     <th >Date Of Birth</th>
+     <th >Mobile No</th>
+     <th >Email Id</th>
+
+     <th >Address</th>
+     <th >Aadhar Card No</th>
+     <th >Pan card No</th>
+     <th>Member Loan Choice</th>
+     
+     
+     
+     <th >Aadhar File</th>
+     <th >Pan File</th>
+     <th >Action Update</th>
+     <th >Action Delete</th>
+
+
+
+
+     
+        {% for RD in mobiles %}
+              
+       
+          <tr>
+            <td>{{RD.id}}</td>
+            <td>{{RD.user}}</td>
+                <td>{{RD.full_name}}</td>
+                <td>{{RD.date_of_birth}}</td>
+                <td>{{RD.mobile_no}}</td>
+                <td>{{RD.email_id}}</td>
+
+                <td>{{RD.address}}</td>
+                <td>{{RD.aadhar_card_number}}</td>
+                <td>{{RD.pan_card_number}}</td>
+                <td>{{RD.member_loan_choice}}</td>
+                <td><img src="{{RD.aadhar_card_upload.url}}" alt="" srcset="" class="img-fluid" height="150" width="150"></td>
+                <td><img src="{{RD.pan_card_upload.url}}" alt="" srcset="" class="img-fluid" height="150" width="150"></td>
+                <td><a href="{% url 'memberupdate' RD.id %}"  class="btn btn-outline-primary">Update</a></td>
+                <td><a href="{% url 'memberdelete' RD.id %}" class="btn btn-outline-danger">Delete</a></td>
+     
+
+
+                
+               
+             
+           
+         </tr>         
+        {% endfor %} 
+        </div> 
+    </table>
+        </div>
+    </div>
+    </div>
+{% endblock %}
+

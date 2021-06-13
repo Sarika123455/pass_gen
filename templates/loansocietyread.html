@@ -1,0 +1,77 @@
+{% extends 'userbase.html' %} 
+
+{% block content %}
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function()
+    {
+       
+        var rate_of_interest;
+       
+        var tatal_amount=0;
+        $('td:nth-child(8)').each(function()
+        {
+            rate_of_interest=$(this).html();
+            total_amount+=parseInt(rate_of_interest);
+            $('#totalamount').text(total_amount);
+
+        });
+    
+    });
+</script> -->
+
+<!-- body -->
+
+
+
+    <br>
+    <br>
+     
+     <table class="table">
+        <tr class="table-dark">
+     <th >ID</th>
+     <th>User</th>
+     <th >Full Name</th>
+     <th >Date</th>
+     <th >Start Month</th>
+     <th >End Month</th>
+
+     <th >Year</th>
+     <th >Rate Of Interest</th>
+     <th >Loan Amount</th>
+     <th>Total Amount</th>
+     
+     
+     
+     
+     
+
+
+     {% for i in read %}
+              
+       
+     <tr>
+       <td>{{i.id}}</td>
+       <td>{{i.user}}</td>
+       <td>{{i.full_name}}</td>
+           <td>{{i.date}}</td>
+           <td>{{i.start_month}}</td>
+           <td>{{i.end_month}}</td>
+           <td>{{i.year}}</td>
+
+           <td>{{i.rate_of_interest}}</td>
+           <td>{{i.loan_amount}}</td>
+           <td id="totalamount">{{i.total_amount}}</td>
+          
+           
+           
+
+        
+
+        </tr>   
+        {% endfor %}
+       
+    </table>
+       
+{% endblock %}

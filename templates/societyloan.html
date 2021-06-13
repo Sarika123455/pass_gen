@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% include "nav.html" %}
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function()
+    {
+        var year=0;
+        var rate_of_interest=0;
+        var loan_amount=0;
+        var tatal_amount=0;
+        $('total_amount').each(function()
+        {
+            rate_of_interest=$(this).html();
+            total_amount+=parseInt(rate_of_interest*year*loan_amount);
+            $('#total_amount').text(total_amount);
+
+        });
+    
+    });
+</script> -->
+
+
+<div class="card align-item-center bg-light " style="width: 40rem;">
+    <div class="card-body">
+    <h5 class="card-title text-danger"><center>Select Member For Loan</center></h5>
+<form action="societyloan" method="POST" enctype="multipart/form-data"   class=" text-black">
+    {% if messages %}
+    {% for message in messages %}
+       <p {% if message.tags %} class="alert alert-{{message.tags}} mb-5"{% endif %}>{{message}}</p>
+       
+   
+    {% endfor %}
+    {% endif %}   
+    {%load crispy_forms_tags%}
+    {%csrf_token%}
+    {{form|crispy}}
+   
+
+    <!-- Full Name {{form.full_name}}
+    Date {{form.date}}
+    Start Month {{form.start_month}}
+    End Month {{form.end_month}}
+    Year {{form.year}}
+    Rate Of Interest {{form.rate_of_interest}}
+    Loan Amount {{form.loan_amount}}
+    Total {{form.total_amount}} -->
+    <!-- {{form|crispy}}
+     -->
+     <!-- {{form.full_name.label}}
+     {{form.full_name}}
+     {{form.date.label}}
+     {{form.date}}
+     {{form.start_month.label}}
+     {{form.start_month}}
+     {{form.end_month.label}}
+     {{form.end_month}}
+     
+
+     {{form.year.label}} 
+     
+      {{form.year}}
+     {{form.rate_of_interest.label}}
+     {{form.rate_of_interest}}
+     {{form.loan_amount.label}}
+     {{form.loan_amount}}
+      -->
+   <br>
+  
+    <button type="submit" class="btn btn-primary">Save</button> 
+  
+</form>
+
+
+
+   
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'userbase.html' %}
+
+
+{% block content %}
+
+
+<br>
+<br>
+<table class="table">
+    <tr class="table-dark">
+ <th >ID</th>
+ <th>User</th>
+ <th >Full Name</th>
+ <!-- <th >Month</th> -->
+ <th >Total Amount</th>
+ <th >Monthly Paid</th>
+
+ <th >Total Paid</th>
+ <th >Status</th>
+ <th >Remaining Balance</th>
+
+ 
+ 
+ 
+ 
+
+
+ {% for i in read %}
+          
+   
+ <tr>
+   <td>{{i.id}}</td>
+   <td>{{i.user}}</td>
+   <td>{{i.member_name}}</td>
+       <!-- <td>{{i.month}}</td> -->
+       <td>{{i.total_amounts}}</td>
+       <td>{{i.monthly_pay}}</td>
+       <td>{{i.total_paid}}</td>
+
+       <td>{{i.status}}</td>
+       <td>{{i.remaining_balance}}</td>
+      
+       
+       
+
+    
+
+    </tr>   
+    {% endfor %}
+   
+</table>
+
+
+
+
+{% endblock %}

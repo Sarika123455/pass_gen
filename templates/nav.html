@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<style>
+  /* Style The Dropdown Button */
+  .dropbtn {
+    background-color: #880e32;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    margin-right:15px;
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {background-color: #afa3a3}
+  
+  /* Show the dropdown menu on hover */
+  <!-- .dropdown:hover .dropdown-content {
+    display: block;
+  } -->
+  
+  /* Change the background color of the dropdown button when the dropdown content is shown */
+  <!-- .dropdown:hover .dropbtn {
+    background-color: #3e618e;
+  } -->
+  .amb{
+    margin-right: 11px;
+
+  }
+  </style>
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-drak  navbar-dark bg-dark text-light">
+    <div class="container-fluid">
+     <a class="navbar-brand" href="#">Society</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item ">
+            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+          </li>
+          
+          
+         
+              
+            
+              <li><a class="nav-link text-light" href="{% url 'signup' %}">User Registration</a></li>
+
+              
+
+               
+
+                <div class="dropdown">
+                  <button class="dropbtn btn btn-secondary dropdown-toggle ">Member</button>
+                  <div class="dropdown-content">
+                    <a href="{% url 'addmember' %}">Add Member</a>
+                    <a href="{% url 'allloan' %}">See  Member</a>
+                    
+                  </div>
+                </div>
+
+                <div class="dropdown">
+                  <button class="dropbtn btn btn-secondary dropdown-toggle ">Society</button>
+                  <div class="dropdown-content">
+                    <a href="{% url 'societyloan' %}">Society Loan</a>
+                    <a href="{% url 'societyloanread' %}">See Society Loan</a>
+                    
+                  </div>
+                </div>
+
+                <div class="dropdown">
+                  <button class="dropbtn btn btn-secondary dropdown-toggle ">Loan Member</button>
+                  <div class="dropdown-content">
+                    <a href="{% url 'memberloanform' %}">Add Loan Member</a>
+                    <a href="{% url 'memberloanread' %}">See Loan Member</a>
+                    
+                  </div>
+                </div>
+           
+
+        
+        </ul>
+       
+          <!-- mmcjjxn -->
+          
+          
+          <!-- jschskm -->
+         
+        
+
+          <ul class="navbar-nav my-2 my-lg-0">
+           
+           
+            
+
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'logout' %}">Logout<span class="sr-only"></span></a></li>
+            
+           
+              
+           
+            
+            
+            
+          </ul>
+          
+
+         
+          {%if request.user.is_authenticated%}
+        <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-person-check-fill text-primary" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm9.854-2.854a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+        </svg>
+        <strong class="text-primary">
+          {{request.user}}</strong>
+        {%else%}
+        <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-person-x-fill text-primary" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6.146-2.854a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z"/>
+        </svg>
+        <strong class="text-primary">
+        {{request.user}}
+        </strong>
+        {%endif%}
+      
+ 
+       
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      </div>
+    </div>
+    
+    </nav>
+
+
+        
+      
+             
+           
+            
+            
+            
+          
+{% endblock %}

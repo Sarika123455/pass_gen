@@ -1,0 +1,71 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+{% include "nav.html" %} 
+{% load static %}
+
+<!-- body -->
+
+
+
+
+     
+     
+     <table class="table">
+        <tr class="table-dark">
+     <th >ID</th>
+     <td>User</td>
+     <th >Full Name</th>
+     <th >Date Of Birth</th>
+     <th >Mobile No</th>
+     <th >Email Id</th>
+
+     <th >Address</th>
+     <th >Aadhar Card No</th>
+     <th >Pan card No</th>
+     <th>Member Loan Choice</th>
+     
+     
+     
+     <th >Aadhar File</th>
+     <th >Pan File</th>
+
+
+     
+        {% for RD in post %}
+              
+       
+          <tr>
+            <td>{{RD.id}}</td>
+            <td>{{RD.user}}</td>
+                <td>{{RD.full_name}}</td>
+                <td>{{RD.date_of_birth}}</td>
+                <td>{{RD.mobile_no}}</td>
+                <td>{{RD.email_id}}</td>
+
+                <td>{{RD.address}}</td>
+                <td>{{RD.aadhar_card_number}}</td>
+                <td>{{RD.pan_card_number}}</td>
+                <td>{{RD.member_loan_choice}}</td>
+                <td><img src="{{RD.aadhar_card_upload.url}}" alt="" srcset="" class="img-fluid" height="150" width="150"></td>
+                <td><img src="{{RD.pan_card_upload.url}}" alt="" srcset="" class="img-fluid" height="150" width="150"></td> 
+
+     
+
+
+                
+                <!-- <p class="card-text"><small class="fw-light text-decoration-line-through">Rs.{{product.selling_price}}</small></p> -->
+               
+                <!-- <form action="/add-to-cart">
+                <input hidden type="text" name='prod_id' value='{{product.id}}' id="prod_id">
+                <input type="submit" class="btn btn-primary" value="Add To Card">
+               </form>  -->
+           
+         </tr>         
+        {% endfor %} 
+        </div> 
+    </table>
+        </div>
+    </div>
+    </div>
+{% endblock %}

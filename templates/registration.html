@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<style>
+
+</style>
+
+<div class="container">
+    <div class="row my-3">
+     <div class="col-sm-6 offset-sm-3">
+      <h3>User Registration</h3>
+      <hr>
+   
+      <form  method="POST" novalidate class="shadow p-5">
+        {% if messages %}
+        {% for message in messages %}
+           <p {% if message.tags %} class="alert alert-{{message.tags}} mb-5"{% endif %}>{{message}}</p>
+        {% endfor %}
+      {% endif %}      
+      {%load crispy_forms_tags%}
+      {%csrf_token%}
+      <!-- {{form|crispy}} -->
+      {{form.username.label}}
+        {{form.username}}
+       <br>
+        {{form.password1.label}}
+        {{form.password1}}
+      <br>
+        {{form.password2.label}}
+        {{form.password2}}
+        
+     
+      <!-- {% for fm in form %}
+      <div class="form-group mb-3">
+           {{fm.label_tag}} {{fm}} <small class="text-danger">{{fm.errors|striptags}}</small>
+       </div>  
+         {% endfor %} -->
+       <br>
+       
+
+        <button type="submit" class="btn btn-outline-primary align-center">contiune</button>
+        
+       
+       
+       
+      </form>
+     </div>
+    </div>
+   </div>
+
+   
+   {% endblock %}

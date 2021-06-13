@@ -1,0 +1,60 @@
+{% extends "userbase.html" %}
+
+{% block content %}
+
+<br>
+<br>
+<table class="table">
+    <tr class="table-dark">
+        <th >ID</th>
+        <td>User</td>
+        <th >Full Name</th>
+        <th >Date of birth</th>
+        <th >Mobile No</th>
+        <th >Email Id</th>
+
+        <th >Address</th>
+        <th >Aadhar Card No</th>
+        <th >Pan card No</th>
+        
+        
+        
+        <th >Aadhar File</th>
+        <th >Pan File</th>
+
+
+
+
+    </tr>
+
+{% for i in read %}
+    <tr>
+        <td>{{i.id}}</td>
+        <td>{{i.user}}</td>
+        <td>{{i.full_name}}</td>
+        <td>{{i.date_of_birth}}</td>
+        <td>{{i.mobile_no}}</td>
+        <td>{{i.email_id}}</td>
+        <td>{{i.address}}</td>
+        <td>{{i.aadhar_card_number}}</td>
+        <td>{{i.pan_card_number}}</td>
+
+
+        <td><img src="{{i.aadhar_card_upload.url}}" alt="" srcset="" class="img-fluid" height="150" width="150"></td>
+        <td><img src="{{i.pan_card_upload.url}}" alt="" srcset="" class="img-fluid" height="150" width="150"></td>
+
+
+
+        
+
+
+
+    </tr>  
+{% endfor %}  
+</table>
+
+
+
+
+
+{% endblock %}

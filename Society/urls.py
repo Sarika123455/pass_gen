@@ -27,7 +27,7 @@ urlpatterns = [
     path("",include("admin_app.urls")),
     path("user/",include("user.urls")),
     url(r'^media/(?P<path>.*)$', Server,{'document_root':       settings.MEDIA_ROOT}),
-    url(r'^static/(?P<path>.*)$', Server,{'document_root': settings.STATIC_ROOT}),
+    url(r'^static/(?P<path>.*)$', Server,{'document_root': settings.STATICFILES_DIRS}),
 
 
 ]

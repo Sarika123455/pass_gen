@@ -1,1 +1,2 @@
-web:gunicorn Society.wsgi --log-file - 
+web: gunicorn Society.wsgi --log-file - 
+heroku ps:scale web=1

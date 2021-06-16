@@ -41,6 +41,7 @@ def Signup(request):
 
 def login(request):
     if request.method =="POST":
+        form=AuthenticationForm(data=request.POST)
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request , username=username , password=password)

@@ -30,10 +30,11 @@ urlpatterns = [
    path('societydelete/<int:id>',views.societydelete,name='societydelete'),
    path('loansocietyread',views.loansocietyread,name='loansocietyread'),
    path('societysearchloan',views.societysearchloan,name='societysearchloan'),
-   # path('monthsearchloan',views.monthsearchloan,name='monthsearchloan'),
-   path('userhome',views.userhome,name='userhome'),
+   path('monthsearchloan',views.monthsearchloan,name='monthsearchloan'),
+   path('userhome',views.userhome,name='userhome'), 
    # path('societysearchloans',views.societysearchloans,name='societysearchloans'),
 
+  
 
 
    

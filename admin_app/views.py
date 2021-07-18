@@ -13,6 +13,7 @@ from django.core.mail import send_mail
 from django.conf import Settings, settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as Login_process
+from django.db.models import Q
 
 # Create your views here.
 
@@ -199,19 +200,32 @@ def societysearchloan(request):
     # read = Loan.objects.filter(status__icontains=query)
     # search = {'read':read}
     if request.method == 'GET':
-        search = request.GET.get('query')    
-        read = Loan.objects.all().filter(status=search)
+        search = request.GET.get('query')
+        # read = Loan.objects.all().filter(status=search)
+        read =[item for item in Loan.objects.all() if search in item.status ]
     return render(request, 'loanreadmember.html',{'read':read})
 
-# @login_required
-# def monthsearchloan(request):
-#     if request.method == 'GET':
-#         search = request.GET.get('query')    
-#         read = Loan.objects.all().filter(month=search)
-#         return render(request, 'loanreadmember.html',{'read':read})        
+@login_required
+def monthsearchloan(request):
+    if request.method == 'POST':
+        fd=request.POST.get('startmonth')
+        to=request.POST.get('endmonth')
+        name=request.POST.get('name')
+        searchresult=Loan.objects.filter(Q(month__gte=fd) & Q(month__lte=to) & Q(full_name=name))
+        d = {'read':searchresult,'fd':fd,'to':to,'name':name}
+        return render(request,'loanreadmember.html',d)
+    return render(request, 'loanreadmember.html')        
 
 
 # def societysearchloans(request):
+#     if request.method == 'GET':
+#         search = request.GET.get('name')
+#         read = Loan.objects.all().filter(Loan__user=search)
+#         # read =[item for item in User.objects.all() if search in item.User ]
+#     return render(request, 'loanreadmember.html',{'read':read})
+    
+       
+
 #     query = request.GET['query']
 #     read = Societyloan.objects.filter(full_name__exact=query)
 #     search = {'read':read}

@@ -31,26 +31,61 @@
  <tr>
    <td>{{i.id}}</td>
    <td>{{i.user}}</td>
-   <td>{{i.member_name}}</td>
+   <td>{{i.full_name}}</td>
        <!-- <td>{{i.month}}</td> -->
        <td>{{i.total_amounts}}</td>
        <td>{{i.monthly_pay}}</td>
-       <td>{{i.total_paid}}</td>
+       <td id="6">{{i.total_paid}}</td>
 
-       <td>{{i.status}}</td>
+       <td>{{i.status}}
+        {% if i.status == 'Paid' %}
+        <div class="progress">
+         <div class="progress-bar bg-item" role="progressbar" style="width:100%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+     </div>  
+     {% endif %} 
+     {% if i.status == 'Unpaid' %}
+        <div class="progress">
+         <div class="progress-bar bg-danger" role="progressbar" style="width:100%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+     </div>  
+     {% endif %} 
+     {% if i.status == 'Complete Loan' %}
+        <div class="progress">
+         <div class="progress-bar bg-success" role="progressbar" style="width:100%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+     </div>  
+     {% endif %} 
+       </td>
+       
        <td>{{i.remaining_balance}}</td>
       
-       
-       
-
-    
-
-    </tr>   
+       </tr>   
     {% endfor %}
+   
+    <tr>
+        <td colspan="5" style="font-weight: bold; text-align: right;">Total Paid :-</td>
+        <td id="totalamount" style="font-weight: bold;"></td>
+        
+    </tr>
    
 </table>
 
+<script>
 
+
+
+    $(document).ready(function()
+    {
+        var total_paid;
+        var totalamount=0;
+        $('td:nth-child(6)').each(function()
+        {
+            total_paid=$(this).html();
+            totalamount+=parseInt(total_paid);
+            $('#totalamount').text(totalamount);
+
+        });
+
+    });
+    </script>
 
 
 {% endblock %}

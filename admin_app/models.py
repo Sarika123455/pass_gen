@@ -59,11 +59,12 @@ class Societyloan(models.Model):
         # end_month=models.CharField(choices=MONTH_CHOICES, max_length=100)
         year=models.IntegerField()
         rate_of_interest=models.FloatField()
-        loan_amount=models.FloatField()
-        total_amount=models.FloatField(null=True)
+        loan_amount=models.IntegerField()
+        total_amount=models.IntegerField(null=True)
+        year_amount=models.IntegerField(null=True)
 
         def __str__(self) :
-            return self.start_month
+            return self.full_name
 
         @property
         def total_amount(self):
@@ -73,6 +74,10 @@ class Societyloan(models.Model):
                         total_amount = total_amount/(self.year*12)
                         return total_amount
         
+        def year_amount(self):
+                if(self.total_amount !=None):
+                        year_amount = self.total_amount*12
+                        return year_amount
         
 # total_amount=Societyloan.objects.annotate(total_amount=F('rate_of_interest') * F('loan_amount'))
 
@@ -84,13 +89,18 @@ STATUS_CHOICES=(
 
 class Loan(models.Model):
         user=models.ForeignKey(User,on_delete=models.CASCADE,null=True)
-        member_name=models.ForeignKey(Member, on_delete=models.CASCADE)
-        # month =models.CharField(choices=MONTH_CHOICES, max_length=100) 
+        full_name=models.ForeignKey(Member, on_delete=models.CASCADE)
+        month =models.CharField(choices=MONTH_CHOICES, max_length=100,default=True) 
         total_amounts=models.FloatField(null=True,default=True)
         monthly_pay=models.IntegerField()
         total_paid=models.IntegerField(default=True)
         status=models.CharField(choices=STATUS_CHOICES,max_length=100)
         remaining_balance=models.IntegerField()
+        # round_total=models.IntegerField(default=True)
+
+        def __str__(self):
+                return self.month
+
 
         @property
         def remaining_balance(self):
@@ -101,4 +111,12 @@ class Loan(models.Model):
         def total_paid(self):
                 if(self.total_amounts != None):
                         total_paid = self.total_amounts - self.remaining_balance
-                        return total_paid                
+                        return total_paid    
+
+        # def round_total(self):
+        #         if(self.total_paid != None):
+        #                 round_total += self.total_paid
+        #                 return round_total
+
+        
+               
